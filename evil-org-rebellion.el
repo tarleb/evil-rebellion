@@ -24,6 +24,7 @@
 
 (require 'evil-macros)
 (require 'evil)
+(require 'evil-scout)
 
 (evil-set-initial-state 'org-agenda-mode 'normal)
 
@@ -60,21 +61,21 @@ If COUNT is given, move COUNT - 1 lines downward first."
   (evil-initialize-local-keymaps))
 
 ;; Keymap for org-mode specific operations to set values.
-(setq evil-org-set-map (make-sparse-keymap))
-(define-key evil-org-set-map "q" 'org-set-tags-command)
-(define-key evil-org-set-map "," 'org-priority)
-(define-key evil-org-set-map "t" 'org-todo)
-(define-key evil-org-set-map "h" 'org-shiftleft)
-(define-key evil-org-set-map "j" 'org-shiftdown)
-(define-key evil-org-set-map "k" 'org-shiftup)
-(define-key evil-org-set-map "l" 'org-shiftright)
-(define-key evil-org-set-map "H" 'org-shiftmetaleft)
-(define-key evil-org-set-map "J" 'org-shiftmetadown)
-(define-key evil-org-set-map "K" 'org-shiftmetaup)
-(define-key evil-org-set-map "L" 'org-shiftmetaright)
+(setq evil-org-setter-map (make-sparse-keymap))
+(define-key evil-org-setter-map "q" 'org-set-tags-command)
+(define-key evil-org-setter-map "," 'org-priority)
+(define-key evil-org-setter-map "t" 'org-todo)
+(define-key evil-org-setter-map "h" 'org-shiftleft)
+(define-key evil-org-setter-map "j" 'org-shiftdown)
+(define-key evil-org-setter-map "k" 'org-shiftup)
+(define-key evil-org-setter-map "l" 'org-shiftright)
+(define-key evil-org-setter-map "H" 'org-shiftmetaleft)
+(define-key evil-org-setter-map "J" 'org-shiftmetadown)
+(define-key evil-org-setter-map "K" 'org-shiftmetaup)
+(define-key evil-org-setter-map "L" 'org-shiftmetaright)
 ;; redefine at will
-(define-key evil-org-set-map "s" 'evil-substitute)
-(define-key evil-normal-state-map "s" evil-org-set-map)
+(define-key evil-org-setter-map "s" 'evil-substitute)
+(define-key-local-leader org-mode-map "s" evil-org-setter-map)
 
 (setq evil-org-meta-map (make-sparse-keymap))
 (define-key evil-org-meta-map "h" 'org-metaleft)
@@ -85,10 +86,12 @@ If COUNT is given, move COUNT - 1 lines downward first."
 (define-key evil-org-meta-map "J" 'org-shiftmetadown)
 (define-key evil-org-meta-map "K" 'org-shiftmetaup)
 (define-key evil-org-meta-map "L" 'org-shiftmetaright)
+(define-key-local-leader org-mode-map "m" evil-org-meta-map)
 
 
 ;; Org Agenda
 ;; ==========
+(define-key-local-leader org-agenda-mode-map "s" evil-org-setter-map)
 (evil-define-key 'normal org-agenda-mode-map
   (kbd "<DEL>") 'org-agenda-show-scroll-down
   (kbd "<RET>") 'org-agenda-switch-to
