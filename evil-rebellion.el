@@ -28,6 +28,12 @@
 ;; code goes here
 
 (eval-after-load 'org-mode
-  (require 'evil-org-rebellion))
+  '(progn
+     (require 'evil-org-rebellion)))
+
+(eval-after-load 'paredit-mode
+  '(progn
+     (require 'evil-paredit-rebellion)))
 
 (provide 'evil-rebellion)
+;;; evil-rebellion.el ends here
