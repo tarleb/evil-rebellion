@@ -75,7 +75,7 @@ If COUNT is given, move COUNT - 1 lines downward first."
 (define-key evil-org-setter-map "L" 'org-shiftmetaright)
 ;; redefine at will
 (define-key evil-org-setter-map "s" 'evil-substitute)
-(define-key-local-leader org-mode-map "s" evil-org-setter-map)
+(define-leader-key 'local-leader org-mode-map "s" evil-org-setter-map)
 
 (setq evil-org-meta-map (make-sparse-keymap))
 (define-key evil-org-meta-map "h" 'org-metaleft)
@@ -86,12 +86,12 @@ If COUNT is given, move COUNT - 1 lines downward first."
 (define-key evil-org-meta-map "J" 'org-shiftmetadown)
 (define-key evil-org-meta-map "K" 'org-shiftmetaup)
 (define-key evil-org-meta-map "L" 'org-shiftmetaright)
-(define-key-local-leader org-mode-map "m" evil-org-meta-map)
+(define-leader-key 'local-leader org-mode-map "m" evil-org-meta-map)
 
 
 ;; Org Agenda
 ;; ==========
-(define-key-local-leader org-agenda-mode-map "s" evil-org-setter-map)
+(define-leader-key 'local-leader org-agenda-mode-map "s" evil-org-setter-map)
 (evil-define-key 'normal org-agenda-mode-map
   (kbd "<DEL>") 'org-agenda-show-scroll-down
   (kbd "<RET>") 'org-agenda-switch-to
