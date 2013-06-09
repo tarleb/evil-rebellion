@@ -26,8 +26,6 @@
 (require 'evil)
 (require 'evil-scout)
 
-(evil-set-initial-state 'org-agenda-mode 'normal)
-
 (evil-define-motion evil-org-end-of-line (count)
   "Move the cursor to the end of the current org line.
 If COUNT is given, move COUNT - 1 lines downward first."
@@ -75,6 +73,7 @@ If COUNT is given, move COUNT - 1 lines downward first."
 (define-key evil-org-setter-map "L" 'org-shiftmetaright)
 ;; redefine at will
 (define-key evil-org-setter-map "s" 'evil-substitute)
+(evil-scout-reset 'local-leader org-mode-map)
 (define-leader-key 'local-leader org-mode-map "s" evil-org-setter-map)
 
 (setq evil-org-meta-map (make-sparse-keymap))
@@ -91,83 +90,87 @@ If COUNT is given, move COUNT - 1 lines downward first."
 
 ;; Org Agenda
 ;; ==========
-(define-leader-key 'local-leader org-agenda-mode-map "s" evil-org-setter-map)
-(evil-define-key 'normal org-agenda-mode-map
-  (kbd "<DEL>") 'org-agenda-show-scroll-down
-  (kbd "<RET>") 'org-agenda-switch-to
-  (kbd "\t") 'org-agenda-goto
-  "\C-n" 'org-agenda-next-line
-  "\C-p" 'org-agenda-previous-line
-  "\C-r" 'org-agenda-redo
-  "a" 'org-agenda-archive-default-with-confirmation
-  "b" 'org-agenda-earlier
-  "c" 'org-agenda-goto-calendar
-  "d" 'org-agenda-day-view
-  "e" 'org-agenda-set-effort
-  "f" 'org-agenda-later
-  "g " 'org-agenda-show-and-scroll-up
-  "gG" 'org-agenda-toggle-time-grid
-  "gh" 'org-agenda-holidays
-  "gj" 'org-agenda-goto-date
-  "gJ" 'org-agenda-clock-goto
-  "gk" 'org-agenda-action
-  "gm" 'org-agenda-bulk-mark
-  "go" 'org-agenda-open-link
-  "gO" 'delete-other-windows
-  "gr" 'org-agenda-redo
-  "gv" 'org-agenda-view-mode-dispatch
-  "gw" 'org-agenda-week-view
-  "g/" 'org-agenda-filter-by-tag
-  "i" 'org-agenda-diary-entry
-  "j" 'org-agenda-next-line
-  "k" 'org-agenda-previous-line
-  "m" 'org-agenda-bulk-mark
-  "n" 'org-agenda-next-line
-  "o" 'delete-other-windows
-  "p" 'org-agenda-previous-line
-  "q" 'org-agenda-quit
-  "r" 'org-agenda-redo
-  "s" 'org-save-all-org-buffers
-  "t" 'org-agenda-todo
-  "u" 'org-agenda-bulk-unmark
-  "x" 'org-agenda-exit
-  "y" 'org-agenda-year-view
-  "z" 'org-agenda-add-note
-  "{" 'org-agenda-manipulate-query-add-re
-  "}" 'org-agenda-manipulate-query-subtract-re
-  "$" 'org-agenda-archive
-  "%" 'org-agenda-bulk-mark-regexp
-  "+" 'org-agenda-priority-up
-  "," 'org-agenda-priority
-  "-" 'org-agenda-priority-down
-  "." 'org-agenda-goto-today
-  "0" 'digit-argument
-  ":" 'org-agenda-set-tags
-  ";" 'org-timer-set-timer
-  "<" 'org-agenda-filter-by-category
-  ">" 'org-agenda-date-prompt
-  "?" 'org-agenda-show-the-flagging-note
-  "A" 'org-agenda-append-agenda
-  "B" 'org-agenda-bulk-action
-  "C" 'org-agenda-convert-date
-  "D" 'org-agenda-toggle-diary
-  "E" 'org-agenda-entry-text-mode
-  "F" 'org-agenda-follow-mode
-  ;G
-  "H" 'org-agenda-holidays
-  "I" 'org-agenda-clock-in
-  "J" 'org-agenda-later
-  "K" 'org-agenda-earlier
-  "L" 'org-agenda-recenter
-  "M" 'org-agenda-phases-of-moon
-  "O" 'org-agenda-clock-out
-  "P" 'org-agenda-show-priority
-  "R" 'org-agenda-clockreport-mode
-  "S" 'org-agenda-sunrise-sunset
-  "T" 'org-agenda-show-tags
-  "X" 'org-agenda-clock-cancel
-  "[" 'org-agenda-manipulate-query-add
-  "\\" 'org-agenda-filter-by-tag-refine
-  "]" 'org-agenda-manipulate-query-subtract)
+(eval-after-load 'org-agenda
+ '(progn
+    (evil-set-initial-state 'org-agenda-mode 'normal)
+    (evil-scout-reset 'local-leader org-agenda-mode-map)
+    (define-leader-key 'local-leader org-agenda-mode-map "s" evil-org-setter-map)
+    (evil-define-key 'normal org-agenda-mode-map
+      (kbd "<DEL>") 'org-agenda-show-scroll-down
+      (kbd "<RET>") 'org-agenda-switch-to
+      (kbd "\t") 'org-agenda-goto
+      "\C-n" 'org-agenda-next-line
+      "\C-p" 'org-agenda-previous-line
+      "\C-r" 'org-agenda-redo
+      "a" 'org-agenda-archive-default-with-confirmation
+      "b" 'org-agenda-earlier
+      "c" 'org-agenda-goto-calendar
+      "d" 'org-agenda-day-view
+      "e" 'org-agenda-set-effort
+      "f" 'org-agenda-later
+      "g " 'org-agenda-show-and-scroll-up
+      "gG" 'org-agenda-toggle-time-grid
+      "gh" 'org-agenda-holidays
+      "gj" 'org-agenda-goto-date
+      "gJ" 'org-agenda-clock-goto
+      "gk" 'org-agenda-action
+      "gm" 'org-agenda-bulk-mark
+      "go" 'org-agenda-open-link
+      "gO" 'delete-other-windows
+      "gr" 'org-agenda-redo
+      "gv" 'org-agenda-view-mode-dispatch
+      "gw" 'org-agenda-week-view
+      "g/" 'org-agenda-filter-by-tag
+      "i" 'org-agenda-diary-entry
+      "j" 'org-agenda-next-line
+      "k" 'org-agenda-previous-line
+      "m" 'org-agenda-bulk-mark
+      "n" 'org-agenda-next-line
+      "o" 'delete-other-windows
+      "p" 'org-agenda-previous-line
+      "q" 'org-agenda-quit
+      "r" 'org-agenda-redo
+      "s" 'org-save-all-org-buffers
+      "t" 'org-agenda-todo
+      "u" 'org-agenda-bulk-unmark
+      "x" 'org-agenda-exit
+      "y" 'org-agenda-year-view
+      "z" 'org-agenda-add-note
+      "{" 'org-agenda-manipulate-query-add-re
+      "}" 'org-agenda-manipulate-query-subtract-re
+      "$" 'org-agenda-archive
+      "%" 'org-agenda-bulk-mark-regexp
+      "+" 'org-agenda-priority-up
+      "," 'org-agenda-priority
+      "-" 'org-agenda-priority-down
+      "." 'org-agenda-goto-today
+      "0" 'digit-argument
+      ":" 'org-agenda-set-tags
+      ";" 'org-timer-set-timer
+      "<" 'org-agenda-filter-by-category
+      ">" 'org-agenda-date-prompt
+      "?" 'org-agenda-show-the-flagging-note
+      "A" 'org-agenda-append-agenda
+      "B" 'org-agenda-bulk-action
+      "C" 'org-agenda-convert-date
+      "D" 'org-agenda-toggle-diary
+      "E" 'org-agenda-entry-text-mode
+      "F" 'org-agenda-follow-mode
+      ;G
+      "H" 'org-agenda-holidays
+      "I" 'org-agenda-clock-in
+      "J" 'org-agenda-later
+      "K" 'org-agenda-earlier
+      "L" 'org-agenda-recenter
+      "M" 'org-agenda-phases-of-moon
+      "O" 'org-agenda-clock-out
+      "P" 'org-agenda-show-priority
+      "R" 'org-agenda-clockreport-mode
+      "S" 'org-agenda-sunrise-sunset
+      "T" 'org-agenda-show-tags
+      "X" 'org-agenda-clock-cancel
+      "[" 'org-agenda-manipulate-query-add
+      "\\" 'org-agenda-filter-by-tag-refine
+      "]" 'org-agenda-manipulate-query-subtract)))
 
 (provide 'evil-org-rebellion)
