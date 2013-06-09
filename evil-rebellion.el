@@ -27,11 +27,11 @@
 
 ;; code goes here
 
-(eval-after-load 'org-mode
+(eval-after-load 'org
   '(progn
      (require 'evil-org-rebellion)))
 
-(eval-after-load 'paredit-mode
+(eval-after-load 'paredit
   '(progn
      (require 'evil-paredit-rebellion)))
 
