@@ -28,20 +28,24 @@
 
 (evil-set-initial-state 'paredit-mode 'normal)
 
-(define-leader-key 'local-leader paredit-mode-map ";" 'paredit-semicolon)
-(define-leader-key 'local-leader paredit-mode-map "b" 'eval-current-buffer)
-(define-leader-key 'local-leader paredit-mode-map "d" 'eval-defun)
-(define-leader-key 'local-leader paredit-mode-map "e" 'eval-last-sexp)
-(define-leader-key 'local-leader paredit-mode-map "r" 'eval-region)
-(define-leader-key 'local-leader paredit-mode-map "v" 'eval-expression)
-(define-leader-key 'local-leader paredit-mode-map "w(" 'paredit-wrap-round)
-(define-leader-key 'local-leader paredit-mode-map "w[" 'paredit-wrap-square)
-(define-leader-key 'local-leader paredit-mode-map "w{" 'paredit-wrap-curly)
-(define-leader-key 'local-leader paredit-mode-map "w<" 'paredit-wrap-angled)
-(define-leader-key 'local-leader paredit-mode-map "J" 'paredit-join-sexps)
-(define-leader-key 'local-leader paredit-mode-map "O" 'paredit-split-sexp)
-(define-leader-key 'local-leader paredit-mode-map "S" 'paredit-splice-sexp)
-(define-leader-key 'local-leader paredit-mode-map "W" 'paredit-wrap-sexp)
+(let ((map (make-sparse-keymap)))
+  (define-key map ";" 'paredit-semicolon)
+  (define-key map "b" 'eval-current-buffer)
+  (define-key map "d" 'eval-defun)
+  (define-key map "e" 'eval-last-sexp)
+  (define-key map "r" 'eval-region)
+  (define-key map "v" 'eval-expression)
+  (define-key map "w(" 'paredit-wrap-round)
+  (define-key map "w[" 'paredit-wrap-square)
+  (define-key map "w{" 'paredit-wrap-curly)
+  (define-key map "w<" 'paredit-wrap-angled)
+  (define-key map "J" 'paredit-join-sexps)
+  (define-key map "O" 'paredit-split-sexp)
+  (define-key map "s" 'paredit-splice-sexp)
+  (define-key map "W" 'paredit-wrap-sexp)
+
+  (defvar evil-local-leader-paredit-mode-map map
+    "evil local-leader keymap for paredit mode."))
 
 (evil-define-key 'normal paredit-mode-map
   "D"   'paredit-kill
@@ -52,6 +56,9 @@
   "gl"  'paredit-forward
   "x"   'paredit-forward-delete
   "X"   'paredit-backward-delete)
+
+(define-leader-key 'local-leader paredit-mode-map
+  nil evil-local-leader-paredit-mode-map)
 
 (provide 'evil-paredit-rebellion)
 ;;; evil-paredit-rebellion.el ends here
