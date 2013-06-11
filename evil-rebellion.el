@@ -35,5 +35,9 @@
   '(progn
      (require 'evil-paredit-rebellion)))
 
+(eval-after-load 'magit
+  '(progn
+     (require 'evil-magit-rebellion)))
+
 (provide 'evil-rebellion)
 ;;; evil-rebellion.el ends here
