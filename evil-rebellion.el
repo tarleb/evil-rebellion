@@ -39,5 +39,9 @@
   '(progn
      (require 'evil-magit-rebellion)))
 
+(eval-after-load 'bbdb
+  '(progn
+     (require 'evil-bbdb-rebellion)))
+
 (provide 'evil-rebellion)
 ;;; evil-rebellion.el ends here
