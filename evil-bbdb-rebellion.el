@@ -69,3 +69,5 @@
   "M-d"         'bbdb-dial)
 
 (evil-set-initial-state 'bbdb-mode 'emacs)
+
+(provide 'evil-bbdb-rebellion)
