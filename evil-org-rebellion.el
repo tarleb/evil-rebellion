@@ -58,23 +58,21 @@ If COUNT is given, move COUNT - 1 lines downward first."
   (setq evil-org-set-map (make-sparse-keymap))
   (evil-initialize-local-keymaps))
 
-;; Keymap for org-mode specific operations to set values.
-(setq evil-org-setter-map (make-sparse-keymap))
-(define-key evil-org-setter-map "q" 'org-set-tags-command)
-(define-key evil-org-setter-map "," 'org-priority)
-(define-key evil-org-setter-map "t" 'org-todo)
-(define-key evil-org-setter-map "h" 'org-shiftleft)
-(define-key evil-org-setter-map "j" 'org-shiftdown)
-(define-key evil-org-setter-map "k" 'org-shiftup)
-(define-key evil-org-setter-map "l" 'org-shiftright)
-(define-key evil-org-setter-map "H" 'org-shiftmetaleft)
-(define-key evil-org-setter-map "J" 'org-shiftmetadown)
-(define-key evil-org-setter-map "K" 'org-shiftmetaup)
-(define-key evil-org-setter-map "L" 'org-shiftmetaright)
-;; redefine at will
-(define-key evil-org-setter-map "s" 'evil-substitute)
+;; Use default org-mode keybindings under C-c as base for the local-leader
+;; bindings.
 (evil-scout-reset 'local-leader org-mode-map)
-(define-leader-key 'local-leader org-mode-map "s" evil-org-setter-map)
+(define-leader-key 'local-leader org-mode-map nil
+  (copy-keymap (lookup-key org-mode-map "\C-c")))
+
+;; bind shift operations to hjkl
+(define-leader-key 'local-leader org-mode-map "h" 'org-shiftleft)
+(define-leader-key 'local-leader org-mode-map "j" 'org-shiftdown)
+(define-leader-key 'local-leader org-mode-map "k" 'org-shiftup)
+(define-leader-key 'local-leader org-mode-map "l" 'org-shiftright)
+(define-leader-key 'local-leader org-mode-map "H" 'org-shiftmetaleft)
+(define-leader-key 'local-leader org-mode-map "J" 'org-shiftmetadown)
+(define-leader-key 'local-leader org-mode-map "K" 'org-shiftmetaup)
+(define-leader-key 'local-leader org-mode-map "L" 'org-shiftmetaright)
 
 (setq evil-org-meta-map (make-sparse-keymap))
 (define-key evil-org-meta-map "h" 'org-metaleft)
