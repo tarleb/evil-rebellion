@@ -1,9 +1,9 @@
-;;; evil-rebellion.el --- Key-bindings for evil rebels
+;;; evil-visual-rebellion.el --- Key-bindings for evil org-mode rebels
 
 ;; Copyright (C) 2013  Albert Krewinkel
 ;;
 ;; Author: Albert Krewinkel <tarleb@moltkeplatz.de>
-;; Keywords: evil rebellion
+;; Keywords: evil visual rebellion
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,28 +22,17 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
+(require 'evil-macros)
 (require 'evil)
+(require 'evil-scout)
 
-;; code goes here
+(evil-define-key 'normal visual-line-mode-map
+  "gj" 'evil-next-line
+  "gk" 'evil-previous-line
+  "j"  'evil-next-visual-line
+  "k"  'evil-previous-visual-line)
 
-(eval-after-load 'org
-  '(progn
-     (require 'evil-org-rebellion)))
+(evil-scout-reset 'local-leader visual-line-mode-map)
 
-(eval-after-load 'paredit
-  '(progn
-     (require 'evil-paredit-rebellion)))
-
-(eval-after-load 'magit
-  '(progn
-     (require 'evil-magit-rebellion)))
-
-(eval-after-load 'bbdb
-  '(progn
-     (require 'evil-bbdb-rebellion)))
-
-(require 'evil-visual-rebellion)
-
-(provide 'evil-rebellion)
-;;; evil-rebellion.el ends here
+(provide 'evil-visual-rebellion)
+;;; evil-visual-rebellion.el ends here
