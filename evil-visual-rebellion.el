@@ -26,7 +26,12 @@
 (require 'evil)
 (require 'evil-scout)
 
+;; Switch bindings for visual line and logical line movements.
 (evil-define-key 'normal visual-line-mode-map
+  "$"  'evil-end-of-visual-line
+  "^"  'evil-beginning-of-visual-line
+  "g$" 'evil-end-of-line
+  "g^" 'evil-beginning-of-line
   "gj" 'evil-next-line
   "gk" 'evil-previous-line
   "j"  'evil-next-visual-line
