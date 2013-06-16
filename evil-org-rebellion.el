@@ -92,7 +92,6 @@ If COUNT is given, move COUNT - 1 lines downward first."
  '(progn
     (evil-set-initial-state 'org-agenda-mode 'normal)
     (evil-scout-reset 'local-leader org-agenda-mode-map)
-    (define-leader-key 'local-leader org-agenda-mode-map "s" evil-org-setter-map)
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "<DEL>") 'org-agenda-show-scroll-down
       (kbd "<RET>") 'org-agenda-switch-to
@@ -101,11 +100,11 @@ If COUNT is given, move COUNT - 1 lines downward first."
       "\C-p" 'org-agenda-previous-line
       "\C-r" 'org-agenda-redo
       "a" 'org-agenda-archive-default-with-confirmation
-      "b" 'org-agenda-earlier
+      ;b
       "c" 'org-agenda-goto-calendar
       "d" 'org-agenda-day-view
       "e" 'org-agenda-set-effort
-      "f" 'org-agenda-later
+      ;f
       "g " 'org-agenda-show-and-scroll-up
       "gG" 'org-agenda-toggle-time-grid
       "gh" 'org-agenda-holidays
@@ -119,18 +118,21 @@ If COUNT is given, move COUNT - 1 lines downward first."
       "gv" 'org-agenda-view-mode-dispatch
       "gw" 'org-agenda-week-view
       "g/" 'org-agenda-filter-by-tag
-      "i" 'org-agenda-diary-entry
-      "j" 'org-agenda-next-line
-      "k" 'org-agenda-previous-line
+      "h"  'org-agenda-earlier
+      "i"  'org-agenda-diary-entry
+      "j"  'org-agenda-next-line
+      "k"  'org-agenda-previous-line
+      "l"  'org-agenda-later
       "m" 'org-agenda-bulk-mark
-      "n" 'org-agenda-next-line
+      "n" nil                           ; evil-search-next
       "o" 'delete-other-windows
-      "p" 'org-agenda-previous-line
+      ;p
       "q" 'org-agenda-quit
       "r" 'org-agenda-redo
       "s" 'org-save-all-org-buffers
       "t" 'org-agenda-todo
       "u" 'org-agenda-bulk-unmark
+      ;v
       "x" 'org-agenda-exit
       "y" 'org-agenda-year-view
       "z" 'org-agenda-add-note
@@ -157,18 +159,40 @@ If COUNT is given, move COUNT - 1 lines downward first."
       ;G
       "H" 'org-agenda-holidays
       "I" 'org-agenda-clock-in
-      "J" 'org-agenda-later
-      "K" 'org-agenda-earlier
+      "J" 'org-agenda-next-date-line
+      "K" 'org-agenda-previous-date-line
       "L" 'org-agenda-recenter
       "M" 'org-agenda-phases-of-moon
+      ;N
       "O" 'org-agenda-clock-out
       "P" 'org-agenda-show-priority
+      ;Q
       "R" 'org-agenda-clockreport-mode
       "S" 'org-agenda-sunrise-sunset
       "T" 'org-agenda-show-tags
+      ;U
+      ;V
+      ;W
       "X" 'org-agenda-clock-cancel
+      ;Y
+      ;Z
       "[" 'org-agenda-manipulate-query-add
-      "\\" 'org-agenda-filter-by-tag-refine
-      "]" 'org-agenda-manipulate-query-subtract)))
+      "g\\" 'org-agenda-filter-by-tag-refine
+      "]" 'org-agenda-manipulate-query-subtract)
+
+    (evil-scout-reset 'local-leader org-agenda-mode-map)
+    (define-leader-key 'local-leader org-agenda-mode-map "a" 'org-attach)
+    (define-leader-key 'local-leader org-agenda-mode-map "d" 'org-agenda-deadline)
+    (define-leader-key 'local-leader org-agenda-mode-map "n" 'org-agenda-next-date-line)
+    (define-leader-key 'local-leader org-agenda-mode-map "o" 'org-agenda-open-link)
+    (define-leader-key 'local-leader org-agenda-mode-map "p" 'org-agenda-previous-date-line)
+    (define-leader-key 'local-leader org-agenda-mode-map "q" 'org-agenda-set-tags)
+    (define-leader-key 'local-leader org-agenda-mode-map "s" 'org-agenda-schedule)
+    (define-leader-key 'local-leader org-agenda-mode-map "t" 'org-agenda-todo)
+    (define-leader-key 'local-leader org-agenda-mode-map "w" 'org-agenda-refile)
+    (define-leader-key 'local-leader org-agenda-mode-map "z" 'org-agenda-add-note)
+    (define-leader-key 'local-leader org-agenda-mode-map "$" 'org-agenda-archive)
+    (define-leader-key 'local-leader org-agenda-mode-map "," 'org-agenda-priority)
+    ))
 
 (provide 'evil-org-rebellion)
