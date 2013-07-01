@@ -183,6 +183,7 @@ If COUNT is given, move COUNT - 1 lines downward first."
     (evil-scout-reset 'local-leader org-agenda-mode-map)
     (define-leader-key 'local-leader org-agenda-mode-map "a" 'org-attach)
     (define-leader-key 'local-leader org-agenda-mode-map "d" 'org-agenda-deadline)
+    (define-leader-key 'local-leader org-agenda-mode-map "D" 'org-agenda-kill)
     (define-leader-key 'local-leader org-agenda-mode-map "n" 'org-agenda-next-date-line)
     (define-leader-key 'local-leader org-agenda-mode-map "o" 'org-agenda-open-link)
     (define-leader-key 'local-leader org-agenda-mode-map "p" 'org-agenda-previous-date-line)
