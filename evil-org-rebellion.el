@@ -115,7 +115,7 @@ If COUNT is given, move COUNT - 1 lines downward first."
       "," 'org-agenda-priority
       "-" 'org-agenda-priority-down
       "." 'org-agenda-goto-today
-      "0" 'digit-argument
+      "0" 'evil-digit-argument-or-evil-beginning-of-line
       ":" 'org-agenda-set-tags
       ";" 'org-timer-set-timer
       "<" 'org-agenda-filter-by-category
