@@ -1,8 +1,8 @@
-;;; evil-bbdb-rebellion.el --- Key-bindings for evil bbdb rebels
+;;; evil-bbdb-rebellion.el --- Key-bindings for evil bbdb3 rebels
 
-;; Copyright (C) 2013  Albert Krewinkel
+;; Copyright © 2013–2014  Albert Krewinkel
 ;;
-;; Author: Albert Krewinkel <tarleb@moltkeplatz.de>
+;; Author: Albert Krewinkel <albert+evil@zeitkraut.de>
 ;; Keywords: evil bbdb rebellion
 ;;
 ;; This program is free software; you can redistribute it and/or modify
@@ -22,52 +22,59 @@
 
 ;;; Code:
 
-(evil-define-key 'emacs bbdb-mode-map
-  "\C-k"         'bbdb-delete-current-field-or-record
-  "!"           'bbdb-search-invert-set
-  "*"           'bbdb-apply-next-command-to-all-records
-  "+"           'bbdb-append-records
-  "-"           'negative-argument
-  ";"           'bbdb-record-edit-notes
-  "="           'delete-other-windows
-  "/"           'bbdb
-  "?"           'bbdb-mode-search-map   ; use "h" for help
-  "A"           'bbdb-create
-  "C"           'bbdb-changed
-  "F"           'bbdb-ftp
-  "O"           'bbdb-insert-new-field  ; instead of "C-o"
-  "P"           'bbdb-print
-  "S"           'bbdb-mode-search-map
-  "T"           'bbdb-display-record-completely
-  "W"           'bbdb-whois
-  "a"           'bbdb-add-or-remove-mail-alias
-  "b"           nil                     ; use "/" instead
-  "c"           'bbdb-edit-current-field
-  "d"           'bbdb-delete-current-field-or-record
-  "e"           nil                     ; use "c" instead
-  "f"           'bbdb-finger
-  "h"           'bbdb-help              ; use "x" for other-window
-  "i"           'bbdb-info
-  "j"           'bbdb-next-record
-  "k"           'bbdb-prev-record
-  "m"           'bbdb-send-mail
-  "n"           nil                     ; use "j" for next-record
-  "o"           'bbdb-omit-record
-  "p"           nil                     ; use "k" instead
-  "q"           'bbdb-bury-buffer
-  "r"           'bbdb-refile-record
-  "s"           'bbdb-save-db
-  "t"           'bbdb-toggle-records-display-layout
-  "w"           'bbdb-www
-  "x"           'other-window
-  "<delete>"    'scroll-down
-  "<mouse-3>"   'bbdb-menu
+(evil-define-key 'motion bbdb-mode-map
+  "\C-k"       'bbdb-delete-field-or-record
+  "\C-x\C-s"   'bbdb-save
+  "\C-x\C-t"   'bbdb-transpose-fields
+  "\d"         'bbdb-prev-field ; DEL
+  "\M-d"       'bbdb-dial
+  "\t"         'bbdb-next-field ; TAB
+  "+"          'bbdb-append-display
+  "*"          'bbdb-do-all-records
+  ";"          'bbdb-edit-foo
+  "?"          'bbdb-help
+  "!"          'bbdb-search-invert
+  "="          'delete-other-windows
+  "a"          'bbdb-add-mail-alias
+  "A"          'bbdb-mail-aliases
+  "C"          'bbdb-copy-records-as-kill
+  "c"          'bbdb-create
+  "d"          'bbdb-delete-field-or-record
+  "e"          'bbdb-edit-field
+  "h"          'bbdb-info
+  "i"          'bbdb-insert-field
+  "J"          'bbdb-next-field
+  "j"          'bbdb-next-record
+  "K"          'bbdb-prev-field
+  "k"          'bbdb-prev-record
+  "m"          'bbdb-mail
+  "M"          'bbdb-mail-address
+  "N"          'bbdb-next-field
+  "n"          'bbdb-next-record
+  "o"          'bbdb-omit-record
+  "P"          'bbdb-prev-field
+  "p"          'bbdb-prev-record
+  "s"          'bbdb-save
+  "T"          'bbdb-display-records-completely
+  "t"          'bbdb-toggle-records-layout
+  "u"          'bbdb-browse-url
 
-  "\C-x\C-s"     'bbdb-save-db
-  "\C-x\C-t"     'bbdb-transpose-fields
+  ;; Search keys
+  "b"          'bbdb
+  "/1"         'bbdb-display-records
+  "/n"         'bbdb-search-name
+  "/o"         'bbdb-search-organization
+  "/p"         'bbdb-search-phone
+  "/a"         'bbdb-search-address
+  "/m"         'bbdb-search-mail
+  "/N"         'bbdb-search-xfields
+  "/x"         'bbdb-search-xfields
+  "/c"         'bbdb-search-changed
+  "/d"         'bbdb-search-duplicates
+  "\C-xnw"     'bbdb-display-all-records
+  "\C-xnd"     'bbdb-display-current-record
+  )
 
-  "M-d"         'bbdb-dial)
-
-(evil-set-initial-state 'bbdb-mode 'emacs)
+(evil-set-initial-state 'bbdb-mode 'motion)
 
 (provide 'evil-bbdb-rebellion)
