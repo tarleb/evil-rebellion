@@ -1,6 +1,6 @@
 ;;; evil-org-rebellion.el --- Key-bindings for evil org-mode rebels
 
-;; Copyright (C) 2013  Albert Krewinkel
+;; Copyright © 2013-2014  Albert Krewinkel
 ;;
 ;; Author: Albert Krewinkel <tarleb@moltkeplatz.de>
 ;; Keywords: evil org rebellion
@@ -24,7 +24,6 @@
 
 (require 'evil-macros)
 (require 'evil)
-(require 'evil-scout)
 
 (evil-define-motion evil-org-end-of-line (count)
   "Move the cursor to the end of the current org line.
@@ -58,40 +57,12 @@ If COUNT is given, move COUNT - 1 lines downward first."
   (setq evil-org-set-map (make-sparse-keymap))
   (evil-initialize-local-keymaps))
 
-;; Use default org-mode keybindings under C-c as base for the local-leader
-;; bindings.
-(evil-scout-reset 'local-leader org-mode-map)
-(define-leader-key 'local-leader org-mode-map nil
-  (copy-keymap (lookup-key org-mode-map "\C-c")))
-
-;; bind shift operations to hjkl
-(define-leader-key 'local-leader org-mode-map "h" 'org-shiftleft)
-(define-leader-key 'local-leader org-mode-map "j" 'org-shiftdown)
-(define-leader-key 'local-leader org-mode-map "k" 'org-shiftup)
-(define-leader-key 'local-leader org-mode-map "l" 'org-shiftright)
-(define-leader-key 'local-leader org-mode-map "H" 'org-shiftmetaleft)
-(define-leader-key 'local-leader org-mode-map "J" 'org-shiftmetadown)
-(define-leader-key 'local-leader org-mode-map "K" 'org-shiftmetaup)
-(define-leader-key 'local-leader org-mode-map "L" 'org-shiftmetaright)
-
-(setq evil-org-meta-map (make-sparse-keymap))
-(define-key evil-org-meta-map "h" 'org-metaleft)
-(define-key evil-org-meta-map "j" 'org-metadown)
-(define-key evil-org-meta-map "k" 'org-metaup)
-(define-key evil-org-meta-map "l" 'org-metaright)
-(define-key evil-org-meta-map "H" 'org-shiftmetaleft)
-(define-key evil-org-meta-map "J" 'org-shiftmetadown)
-(define-key evil-org-meta-map "K" 'org-shiftmetaup)
-(define-key evil-org-meta-map "L" 'org-shiftmetaright)
-(define-leader-key 'local-leader org-mode-map "m" evil-org-meta-map)
-
 
 ;; Org Agenda
 ;; ==========
 (eval-after-load 'org-agenda
  '(progn
     (evil-set-initial-state 'org-agenda-mode 'normal)
-    (evil-scout-reset 'local-leader org-agenda-mode-map)
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "<DEL>") 'org-agenda-show-scroll-down
       (kbd "<RET>") 'org-agenda-switch-to
@@ -178,22 +149,6 @@ If COUNT is given, move COUNT - 1 lines downward first."
       ;Z
       "[" 'org-agenda-manipulate-query-add
       "g\\" 'org-agenda-filter-by-tag-refine
-      "]" 'org-agenda-manipulate-query-subtract)
-
-    (evil-scout-reset 'local-leader org-agenda-mode-map)
-    (define-leader-key 'local-leader org-agenda-mode-map "a" 'org-attach)
-    (define-leader-key 'local-leader org-agenda-mode-map "d" 'org-agenda-deadline)
-    (define-leader-key 'local-leader org-agenda-mode-map "D" 'org-agenda-kill)
-    (define-leader-key 'local-leader org-agenda-mode-map "n" 'org-agenda-next-date-line)
-    (define-leader-key 'local-leader org-agenda-mode-map "o" 'org-agenda-open-link)
-    (define-leader-key 'local-leader org-agenda-mode-map "p" 'org-agenda-previous-date-line)
-    (define-leader-key 'local-leader org-agenda-mode-map "q" 'org-agenda-set-tags)
-    (define-leader-key 'local-leader org-agenda-mode-map "s" 'org-agenda-schedule)
-    (define-leader-key 'local-leader org-agenda-mode-map "t" 'org-agenda-todo)
-    (define-leader-key 'local-leader org-agenda-mode-map "w" 'org-agenda-refile)
-    (define-leader-key 'local-leader org-agenda-mode-map "z" 'org-agenda-add-note)
-    (define-leader-key 'local-leader org-agenda-mode-map "$" 'org-agenda-archive)
-    (define-leader-key 'local-leader org-agenda-mode-map "," 'org-agenda-priority)
-    ))
+      "]" 'org-agenda-manipulate-query-subtract)))
 
 (provide 'evil-org-rebellion)
