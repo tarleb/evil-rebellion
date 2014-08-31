@@ -1,6 +1,6 @@
-;;; evil-visual-rebellion.el --- Key-bindings for evil org-mode rebels
+;;; evil-visual-rebellion.el --- Key-bindings for evil visual-mode rebels
 
-;; Copyright (C) 2013  Albert Krewinkel
+;; Copyright © 2013–2014  Albert Krewinkel
 ;;
 ;; Author: Albert Krewinkel <tarleb@moltkeplatz.de>
 ;; Keywords: evil visual rebellion
@@ -24,7 +24,6 @@
 
 (require 'evil-macros)
 (require 'evil)
-(require 'evil-scout)
 
 ;; Switch bindings for visual line and logical line movements.
 (evil-define-key 'normal visual-line-mode-map
@@ -36,8 +35,6 @@
   "gk" 'evil-previous-line
   "j"  'evil-next-visual-line
   "k"  'evil-previous-visual-line)
-
-(evil-scout-reset 'local-leader visual-line-mode-map)
 
 (provide 'evil-visual-rebellion)
 ;;; evil-visual-rebellion.el ends here
