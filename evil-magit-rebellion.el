@@ -86,10 +86,10 @@
   "/" 'evil-search-forward
   "?" 'evil-search-backward)
 
-;; (evil-set-initial-state magit-commit-mode 'motion)
-;; (evil-define-key 'motion magit-commit-mode-map
-;;   "\C-c\C-b" 'magit-show-commit-backward
-;;   "\C-c\C-f" 'magit-show-commit-forward))
+(evil-set-initial-state 'magit-commit-mode 'motion)
+(evil-define-key 'motion magit-commit-mode-map
+  "\C-c\C-b" 'magit-show-commit-backward
+  "\C-c\C-f" 'magit-show-commit-forward)
 
 (evil-set-initial-state 'magit-status-mode 'motion)
 (evil-define-key 'motion magit-status-mode-map
