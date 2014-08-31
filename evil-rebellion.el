@@ -31,10 +31,6 @@
   '(progn
      (require 'evil-org-rebellion)))
 
-(eval-after-load 'paredit
-  '(progn
-     (require 'evil-paredit-rebellion)))
-
 (eval-after-load 'magit
   '(progn
      (require 'evil-magit-rebellion)))
