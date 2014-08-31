@@ -1,8 +1,8 @@
 ;;; evil-visual-rebellion.el --- Key-bindings for evil visual-mode rebels
 
-;; Copyright © 2013–2014  Albert Krewinkel
+;; Copyright © 2013-2014  Albert Krewinkel
 ;;
-;; Author: Albert Krewinkel <tarleb@moltkeplatz.de>
+;; Author: Albert Krewinkel <albert+evil@zeitkraut.de>
 ;; Keywords: evil visual rebellion
 ;;
 ;; This program is free software; you can redistribute it and/or modify

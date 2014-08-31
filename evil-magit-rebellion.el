@@ -2,7 +2,7 @@
 
 ;; Copyright © 2013-2014  Albert Krewinkel
 ;;
-;; Author: Albert Krewinkel <tarleb@moltkeplatz.de>
+;; Author: Albert Krewinkel <albert+evil@zeitkraut.de>
 ;; Keywords: evil magit rebellion
 ;;
 ;; This program is free software; you can redistribute it and/or modify
