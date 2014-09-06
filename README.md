@@ -20,7 +20,7 @@ evil keybindings and other modes like buffer lists or magit revision control.
 
 ## License
 
-The *evil rebellion* against non-consistent emacs key bindings.
+The *evil rebellion* against inconsistent emacs key bindings.
 Copyright © 2013–2014  Albert Krewinkel
 
 This program is free software: you can redistribute it and/or modify it under
