@@ -24,6 +24,7 @@
 
 ;; Start to insert mode when editing commit messages
 (evil-set-initial-state 'magit-log-edit-mode 'insert)
+(evil-set-initial-state 'git-commit-mode 'insert)
 
 ;; "1" 'magit-show-level-1
 ;; "2" 'magit-show-level-2
