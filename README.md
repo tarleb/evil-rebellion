@@ -8,14 +8,16 @@ evil keybindings and other modes like buffer lists or magit revision control.
 
 ## Conventions
 
-* Moving is always done using hjkl.  However, h and l may be rebound if
-  forward/backward char doesn't make sense in a buffer.
-* Longer range jumps are commands prefixed by g.
-* Refresh is bound to r.
-* Quitting and hiding is bound to q.
-* Searching is done using /, ?, n and N.
-* d is for 'delete'
-* o is for 'open'
+* Moving is always done using `hjkl`.  However, `h` and `l` may be rebound if
+  charwise moving doesn't make sense in a buffer.
+* Longer range jumps are commands prefixed by `g`.
+* Refresh is bound to `r`.
+* Quitting and hiding is bound to `q`.
+* Searching is done using `/`, `?`, `n` and `N`.
+* `d` is for *delete*
+* `o` is for *open*
+* `:` will always start `EX` mode – mode-specific comman evaluation is
+  initialized using `;` where available.
 * Shift-key gives access to a different flavor of the command.
 
 ## License
