@@ -54,6 +54,7 @@
   (kbd "\C-b") 'magit-show-item-or-scroll-down
   (kbd "\M-d") 'magit-copy-item-as-kill
   "H" 'magit-rebase-step
+  "c" 'magit-key-mode-popup-committing
   "t" 'magit-key-mode-popup-tagging
   "h" 'magit-key-mode-popup-rewriting
   "P" 'magit-key-mode-popup-pushing
@@ -63,7 +64,6 @@
   "f" 'magit-key-mode-popup-fetching
   "l" 'magit-key-mode-popup-logging
   "$" 'magit-display-process
-  "c" 'magit-log-edit
   "E" 'magit-interactive-rebase
   "e" 'magit-ediff
   "w" 'magit-wazzup
