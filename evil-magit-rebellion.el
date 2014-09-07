@@ -40,7 +40,7 @@
   "\M-h" 'magit-show-only-files
   "\M-s" 'magit-show-level-4
   "!" 'magit-key-mode-popup-running
-  "$" 'magit-display-process
+  "$" 'magit-process
   "+" 'magit-diff-larger-hunks
   "-" 'magit-diff-smaller-hunks
   "=" 'magit-diff-default-hunks
