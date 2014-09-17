@@ -26,6 +26,53 @@
 (evil-set-initial-state 'magit-log-edit-mode 'insert)
 (evil-set-initial-state 'git-commit-mode 'insert)
 
+(defun evil-magit-rebellion-quit-keymode ()
+  (interactive)
+  (magit-key-mode-command nil))
+
+(evil-set-initial-state 'magit-commit-mode 'motion)
+(evil-define-key 'motion magit-commit-mode-map
+  "\C-c\C-b" 'magit-show-commit-backward
+  "\C-c\C-f" 'magit-show-commit-forward)
+
+(evil-set-initial-state 'magit-status-mode 'motion)
+(evil-define-key 'motion magit-status-mode-map
+  "\C-f" 'evil-scroll-page-down
+  "\C-b" 'evil-scroll-page-up
+  "." 'magit-mark-item
+  "=" 'magit-diff-with-mark
+  "C" 'magit-add-log
+  "I" 'magit-ignore-item-locally
+  "S" 'magit-stage-all
+  "U" 'magit-unstage-all
+  "X" 'magit-reset-working-tree
+  "d" 'magit-discard-item
+  "i" 'magit-ignore-item
+  "s" 'magit-stage-item
+  "u" 'magit-unstage-item
+  "z" 'magit-key-mode-popup-stashing)
+
+(evil-set-initial-state 'magit-log-mode 'motion)
+(evil-define-key 'motion magit-log-mode-map
+  "." 'magit-mark-item
+  "=" 'magit-diff-with-mark
+  "e" 'magit-log-show-more-entries)
+
+(evil-set-initial-state 'magit-wassup-mode 'motion)
+(evil-define-key 'motion magit-wazzup-mode-map
+  "." 'magit-mark-item
+  "=" 'magit-diff-with-mark
+  "i" 'magit-ignore-item)
+
+(evil-set-initial-state 'magit-branch-manager-mode 'motion)
+(evil-define-key 'motion magit-branch-manager-mode-map
+  "a" 'magit-add-remote
+  "c" 'magit-rename-item
+  "d" 'magit-discard-item
+  "o" 'magit-create-branch
+  "v" 'magit-show-branches
+  "T" 'magit-change-what-branch-tracks)
+
 ;; "1" 'magit-show-level-1
 ;; "2" 'magit-show-level-2
 ;; "3" 'magit-show-level-3
@@ -140,50 +187,5 @@
     "o" 'magit-submodule-update
     "t" 'magit-tag
     "z" 'magit-stash))
-
-(defun evil-magit-rebellion-quit-keymode ()
-  (interactive)
-  (magit-key-mode-command nil))
-
-(evil-set-initial-state 'magit-commit-mode 'motion)
-(evil-define-key 'motion magit-commit-mode-map
-  "\C-c\C-b" 'magit-show-commit-backward
-  "\C-c\C-f" 'magit-show-commit-forward)
-
-(evil-set-initial-state 'magit-status-mode 'motion)
-(evil-define-key 'motion magit-status-mode-map
-  "\C-f" 'evil-scroll-page-down
-  "\C-b" 'evil-scroll-page-up
-  "." 'magit-mark-item
-  "=" 'magit-diff-with-mark
-  "C" 'magit-add-log
-  "I" 'magit-ignore-item-locally
-  "S" 'magit-stage-all
-  "U" 'magit-unstage-all
-  "X" 'magit-reset-working-tree
-  "d" 'magit-discard-item
-  "i" 'magit-ignore-item
-  "s" 'magit-stage-item
-  "u" 'magit-unstage-item
-  "z" 'magit-key-mode-popup-stashing)
-
-(evil-set-initial-state 'magit-log-mode 'motion)
-(evil-define-key 'motion magit-log-mode-map
-  "." 'magit-mark-item
-  "=" 'magit-diff-with-mark
-  "e" 'magit-log-show-more-entries)
-
-(evil-set-initial-state 'magit-wassup-mode 'motion)
-(evil-define-key 'motion magit-wazzup-mode-map
-  "." 'magit-mark-item
-  "=" 'magit-diff-with-mark
-  "i" 'magit-ignore-item)
-
-(evil-set-initial-state 'magit-branch-manager-mode 'motion)
-(evil-define-key 'motion magit-branch-manager-mode-map
-  "d" 'magit-remove-branch
-  "D" 'magit-remove-branch-in-remote-repo
-  "v" 'magit-show-branches
-  "T" 'magit-change-what-branch-tracks)
 
 (provide 'evil-magit-rebellion)
