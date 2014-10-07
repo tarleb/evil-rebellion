@@ -19,6 +19,9 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+;; Complimentary key bindings for evil-mode.
 
 ;;; Code:
 
@@ -38,6 +41,8 @@
 (eval-after-load 'bbdb
   '(progn
      (require 'evil-bbdb-rebellion)))
+
+(require 'evil-buffer-menu-rebellion)
 
 (require 'evil-visual-rebellion)
 
