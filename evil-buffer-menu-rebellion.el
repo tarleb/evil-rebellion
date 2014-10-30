@@ -26,6 +26,8 @@
 
 ;;; Code:
 
+(require 'evil)
+
 (evil-set-initial-state 'Buffer-menu-mode 'motion)
 
 (evil-define-key 'motion Buffer-menu-mode-map
